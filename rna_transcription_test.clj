@@ -3,16 +3,16 @@
             [rna-transcription :refer :all])
   (:use midje.sweet))
 
-(future-fact "transcribes-cytosine-to-guanine"
+(fact "transcribes-cytosine-to-guanine"
       (to-rna "C") => "G")
 
-(future-fact "transcribes-guanine-to-cytosine"
+(fact "transcribes-guanine-to-cytosine"
              (to-rna "G") => "C")
 
-(future-fact "transcribes-adenine-to-uracil"
+(fact "transcribes-adenine-to-uracil"
              (to-rna "A") => "U")
 
-(future-fact "it-transcribes-thymine-to-adenine"
+(fact "it-transcribes-thymine-to-adenine"
              (to-rna "T") => "A")
 
 (future-fact "it-transcribes-all-nucleotides"
