@@ -15,7 +15,7 @@
 (fact "it-transcribes-thymine-to-adenine"
              (to-rna "T") => "A")
 
-(future-fact "it-transcribes-all-nucleotides"
+(fact "it-transcribes-all-nucleotides"
              (to-rna "ACGTGGTCTTAA") => "UGCACCAGAAUU")
 
 (future-fact "it-validates-dna-strands"
