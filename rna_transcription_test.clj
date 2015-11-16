@@ -1,24 +1,23 @@
 (ns rna-transcription-test
-  (:require [clojure.test :refer :all]))
+  (:require [clojure.test :refer :all]
+            [rna-transcription :refer :all])
+  (:use midje.sweet))
 
-(load-file "rna_transcription.clj")
+(future-fact "transcribes-cytosine-to-guanine"
+      (to-rna "C") => "G")
 
-(deftest transcribes-cytosine-to-guanine
-  (is (= "G" (rna-transcription/to-rna "C"))))
+(future-fact "transcribes-guanine-to-cytosine"
+             (to-rna "G") => "C")
 
-(deftest transcribes-guanine-to-cytosine
-  (is (= "C" (rna-transcription/to-rna "G"))))
+(future-fact "transcribes-adenine-to-uracil"
+             (to-rna "A") => "U")
 
-(deftest transcribes-adenine-to-uracil
-  (is (= "U" (rna-transcription/to-rna "A"))))
+(future-fact "it-transcribes-thymine-to-adenine"
+             (to-rna "T") => "A")
 
-(deftest it-transcribes-thymine-to-adenine
-  (is (= "A" (rna-transcription/to-rna "T"))))
+(future-fact "it-transcribes-all-nucleotides"
+             (to-rna "ACGTGGTCTTAA") => "UGCACCAGAAUU")
 
-(deftest it-transcribes-all-nucleotides
-  (is (= "UGCACCAGAAUU" (rna-transcription/to-rna "ACGTGGTCTTAA"))))
+(future-fact "it-validates-dna-strands"
+             (to-rna "XCGFGGTDTTAA") => (throw AssertionError))
 
-(deftest it-validates-dna-strands
-  (is (thrown? AssertionError (rna-transcription/to-rna "XCGFGGTDTTAA"))))
-
-(run-tests)
