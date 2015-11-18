@@ -1,5 +1,8 @@
  (ns rna-transcription)
 
+(defn is-dna? [input]
+ (re-matches #"[CGAT]+" input))
+
  (defn to-rna-char [^Character c]
   (cond
    (= c \C) "G"
@@ -8,4 +11,5 @@
    (= c \T) "A"))
 
  (defn to-rna [input]
-  (apply str (map to-rna-char (seq input))))
+  (when (is-dna? input)
+   (apply str (map to-rna-char (seq input)))))

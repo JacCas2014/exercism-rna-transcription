@@ -7,17 +7,24 @@
       (to-rna "C") => "G")
 
 (fact "transcribes-guanine-to-cytosine"
-             (to-rna "G") => "C")
+      (to-rna "G") => "C")
 
 (fact "transcribes-adenine-to-uracil"
-             (to-rna "A") => "U")
+      (to-rna "A") => "U")
 
 (fact "it-transcribes-thymine-to-adenine"
-             (to-rna "T") => "A")
+      (to-rna "T") => "A")
 
 (fact "it-transcribes-all-nucleotides"
-             (to-rna "ACGTGGTCTTAA") => "UGCACCAGAAUU")
+      (to-rna "ACGTGGTCTTAA") => "UGCACCAGAAUU")
 
-(future-fact "it-validates-dna-strands"
-             (to-rna "XCGFGGTDTTAA") => (throw AssertionError))
+(fact "it-validates-dna-strands"
+      (to-rna "XCGFGGTDTTAA") => nil)
+
+(fact "is-dna asserts true if it is dna"
+      (is-dna? "GCATTTTAAACCCGGG") => truthy)
+
+(fact "is-dna asserts false if it is not dna"
+      (is-dna? "XCGFGGTDTTAA") => falsey)
+
 
