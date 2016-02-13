@@ -6,5 +6,5 @@
   (re-matches #"[CGAT]+" input))
 
 (defn to-rna [input]
-  (when (is-dna? input)
-    (apply str (map dna-to-rna input))))
+  (assert (is-dna? input))
+  (apply str (map dna-to-rna input)))
